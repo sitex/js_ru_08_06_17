@@ -37,7 +37,7 @@ export default class Article extends Component {
             <button onClick = {this.toggleOpen}>
                 {isOpen ? 'hide text' : 'show text'}
             </button>
-            {article.comments ? commentButton : ''}
+            {article.comments ? commentButton : ' (no comments)'}
         </div>
     }
 
