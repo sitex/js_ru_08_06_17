@@ -6,40 +6,23 @@ export default class Article extends Component {
         super(props)
 
         this.state = {
-            isOpen: true,
-            showComments: false
-            //лучше внести этот стейт в CommentList, иначе компонент выходит очень прегруженным
+            isOpen: true
         }
     }
 
     render() {
         const {article} = this.props
+        const {isOpen} = this.state
         return (
             <div>
                 <h3>{article.title}</h3>
-                {this.getButtons()}
+                <button onClick = {this.toggleOpen}>
+                    {isOpen ? 'hide text' : 'show text'}
+                </button>
                 {this.getBody()}
-                {this.getComments()}
+                {this.getCommentList()}
             </div>
         )
-    }
-
-    getButtons() {
-        const {isOpen} = this.state
-        const {showComments} = this.state
-        const {comments} = this.props.article
-
-        const commentButton =
-            <button onClick = {this.toggleComments}>
-                {showComments ? 'hide comments' : 'show comments'}
-            </button>
-
-        return <div>
-            <button onClick = {this.toggleOpen}>
-                {isOpen ? 'hide text' : 'show text'}
-            </button>
-            {comments ? commentButton : ' (no comments)'}
-        </div>
     }
 
     getBody() {
@@ -48,13 +31,9 @@ export default class Article extends Component {
         return <section>{article.text}</section>
     }
 
-    getComments() {
-        if (!this.state.showComments) return null
+    getCommentList() {
         const {comments} = this.props.article
-        //Я б эту проверку спрятал в CommentList
-        if (comments) {
-            return <CommentList comments = {comments} />
-        }
+        return <CommentList comments = {comments} />
     }
 
     toggleOpen = (ev) => {
@@ -65,10 +44,4 @@ export default class Article extends Component {
         })
     }
 
-    toggleComments = (ev) => {
-        ev.preventDefault()
-        this.setState({
-            showComments: !this.state.showComments
-        })
-    }
 }
