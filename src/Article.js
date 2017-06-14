@@ -8,6 +8,7 @@ export default class Article extends Component {
         this.state = {
             isOpen: true,
             showComments: false
+            //лучше внести этот стейт в CommentList, иначе компонент выходит очень прегруженным
         }
     }
 
@@ -50,6 +51,7 @@ export default class Article extends Component {
     getComments() {
         if (!this.state.showComments) return null
         const {comments} = this.props.article
+        //Я б эту проверку спрятал в CommentList
         if (comments) {
             return <CommentList comments = {comments} />
         }
