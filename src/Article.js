@@ -26,7 +26,7 @@ export default class Article extends Component {
     getButtons() {
         const {isOpen} = this.state
         const {showComments} = this.state
-        const {article} = this.props
+        const {comments} = this.props.article
 
         const commentButton =
             <button onClick = {this.toggleComments}>
@@ -37,7 +37,7 @@ export default class Article extends Component {
             <button onClick = {this.toggleOpen}>
                 {isOpen ? 'hide text' : 'show text'}
             </button>
-            {article.comments ? commentButton : ' (no comments)'}
+            {comments ? commentButton : ' (no comments)'}
         </div>
     }
 
@@ -49,9 +49,9 @@ export default class Article extends Component {
 
     getComments() {
         if (!this.state.showComments) return null
-        const {article} = this.props
-        if (article.comments) {
-            return <CommentList comments = {article.comments} />
+        const {comments} = this.props.article
+        if (comments) {
+            return <CommentList comments = {comments} />
         }
     }
 
