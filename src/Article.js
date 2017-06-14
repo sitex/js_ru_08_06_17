@@ -20,7 +20,7 @@ export default class Article extends Component {
                     {isOpen ? 'hide text' : 'show text'}
                 </button>
                 {this.getBody()}
-                {this.getCommentList()}
+                <CommentList comments = {article.comments} />
             </div>
         )
     }
@@ -29,11 +29,6 @@ export default class Article extends Component {
         if (!this.state.isOpen) return null
         const {article} = this.props
         return <section>{article.text}</section>
-    }
-
-    getCommentList() {
-        const {comments} = this.props.article
-        return <CommentList comments = {comments} />
     }
 
     toggleOpen = (ev) => {
