@@ -5,8 +5,8 @@ import ArticlesChart from './ArticlesChart'
 
 class App extends Component {
     static propTypes = {
-
-    };
+        articles: PropTypes.array.isRequired
+    }
 
     render() {
         return (
