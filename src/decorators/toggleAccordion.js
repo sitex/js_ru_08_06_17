@@ -15,8 +15,9 @@ export default (OriginalComponent) => class AccordionComponent extends ReactComp
 
     toggleOpenArticle = openArticleId => ev => {
         ev && ev.preventDefault && ev.preventDefault()
+        const id = (this.state.openArticleId === openArticleId) ? null : openArticleId
         this.setState({
-            openArticleId: openArticleId
+            openArticleId: id
         })
     }
 }
