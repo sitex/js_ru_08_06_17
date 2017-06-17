@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import Article from './Article'
 import toggleAccordion from '../decorators/toggleAccordion'
 import PropTypes from 'prop-types'
