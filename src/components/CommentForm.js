@@ -8,6 +8,7 @@ class CommentForm extends Component {
 
     state = {
         user: '',
+        //держи минимальный стейт. Эти поля ты можешь определить из предыдущих прямо в render()
         user_error: false,
         text: '',
         text_error: false,
