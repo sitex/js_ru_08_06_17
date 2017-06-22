@@ -8,10 +8,7 @@ class CommentForm extends Component {
 
     state = {
         user: '',
-        //держи минимальный стейт. Эти поля ты можешь определить из предыдущих прямо в render()
-        user_error: false,
         text: '',
-        text_error: false,
     }
 
     render() {
@@ -20,13 +17,13 @@ class CommentForm extends Component {
             <fieldset>
                 <legend>Add Comment:</legend>
                 <div>
-                    User: <input style = {this.state.user_error ? errorStyle : {}}
+                    User: <input style = {(this.state.user.length < 5 || this.state.user.length > 15) ? errorStyle : {}}
                                  type = 'text'
                                  value = {this.state.user}
                                  onChange = {this.handleUserChange}/>
                 </div>
                 <div>
-                    Text: <textarea style = {this.state.text_error ? errorStyle : {}}
+                    Text: <textarea style = {(this.state.text.length < 20 || this.state.text.length > 50) ? errorStyle : {}}
                                     value = {this.state.text}
                                     onChange = {this.handleTextChange} />
                 </div>
@@ -37,15 +34,13 @@ class CommentForm extends Component {
 
     handleUserChange = (ev) => {
         this.setState({
-            user_error: (ev.target.value.length < 5 || ev.target.value.length > 15),
-            user: ev.target.value,
+            user: ev.target.value
         })
     }
 
     handleTextChange = (ev) => {
         this.setState({
-            text_error: (ev.target.value.length < 20 || ev.target.value.length > 50),
-            text: ev.target.value,
+            text: ev.target.value
         })
     }
 
