@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
+import {setIdFilter} from '../../AC'
+import {connect} from 'react-redux'
 
 import 'react-select/dist/react-select.css'
 
@@ -13,7 +15,10 @@ class SelectFilter extends Component {
         articles: PropTypes.array.isRequired
     };
 
-    handleChange = selected => this.setState({selected})
+    handleChange = selected => {
+        this.setState({selected})
+        this.props.setIdFilter(selected.map(select => select.value))
+    }
 
     render() {
         const { selected } = this.state
@@ -33,4 +38,4 @@ class SelectFilter extends Component {
     }
 }
 
-export default SelectFilter
+export default connect(null, { setIdFilter })(SelectFilter)

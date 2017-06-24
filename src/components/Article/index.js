@@ -6,6 +6,7 @@ import CommentList from '../CommentList'
 import { CSSTransitionGroup } from 'react-transition-group'
 import {deleteArticle} from '../../AC'
 import './style.css'
+import moment from 'moment'
 
 class Article extends PureComponent {
     static propTypes = {
@@ -32,7 +33,7 @@ class Article extends PureComponent {
         const {article, isOpen, toggleOpen} = this.props
         return (
             <div ref = {this.setContainerRef}>
-                <h3>{article.title}</h3>
+                <h3>{moment(article.date).format('MMM DD YYYY')} - {article.title}</h3>
                 <button onClick = {toggleOpen}>
                     {isOpen ? 'close' : 'open'}
                 </button>
