@@ -31,17 +31,19 @@ class ArticleList extends Component {
     }
 }
 
-const getVisibleArticles = (articles, idFilter, dateFilter) => {
-    const checkId = (id) => (idFilter.ids.indexOf(id) > -1)
-    const checkDate = (date) => (moment(date).isBetween(dateFilter.from, dateFilter.to))
+const getVisibleArticles = (articles, filter) => {
+    const isActiveIdFilter = (filter.ids.length > 0)
+    const isActiveDateFilter = ((!!filter.from && !!filter.to))
+    const checkId = (id) => (filter.ids.indexOf(id) > -1)
+    const checkDate = (date) => (moment(date).isBetween(filter.from, filter.to))
 
-    if (idFilter.active && dateFilter.active) {
+    if (isActiveIdFilter && isActiveDateFilter) {
         return articles.filter(article => (checkId(article.id) && checkDate(article.date)))
 
-    } else if (idFilter.active) {
+    } else if (isActiveIdFilter) {
         return articles.filter(article => (checkId(article.id)))
 
-    } else if (dateFilter.active) {
+    } else if (isActiveDateFilter) {
         return articles.filter(article => (checkDate(article.date)))
     }
 
@@ -49,5 +51,5 @@ const getVisibleArticles = (articles, idFilter, dateFilter) => {
 }
 
 export default connect(state => ({
-    articles: getVisibleArticles(state.articles, state.idFilter, state.dateFilter)
+    articles: getVisibleArticles(state.articles, state.filter)
 }))(accordion(ArticleList))
