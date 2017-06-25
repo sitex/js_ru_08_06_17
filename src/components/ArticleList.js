@@ -33,18 +33,18 @@ class ArticleList extends Component {
 
 const getVisibleArticles = (articles, filter) => {
     const isActiveIdFilter = (filter.ids.length > 0)
-    const isActiveDateFilter = ((!!filter.from && !!filter.to))
-    const checkId = (id) => (filter.ids.indexOf(id) > -1)
-    const checkDate = (date) => (moment(date).isBetween(filter.from, filter.to))
+    const isActiveDateFilter = (!!filter.from && !!filter.to)
+    const checkId = (id) => filter.ids.includes(id)
+    const checkDate = (date) => moment(date).isBetween(filter.from, filter.to)
 
     if (isActiveIdFilter && isActiveDateFilter) {
-        return articles.filter(article => (checkId(article.id) && checkDate(article.date)))
+        return articles.filter(article => checkId(article.id) && checkDate(article.date))
 
     } else if (isActiveIdFilter) {
-        return articles.filter(article => (checkId(article.id)))
+        return articles.filter(article => checkId(article.id))
 
     } else if (isActiveDateFilter) {
-        return articles.filter(article => (checkDate(article.date)))
+        return articles.filter(article => checkDate(article.date))
     }
 
     return articles
