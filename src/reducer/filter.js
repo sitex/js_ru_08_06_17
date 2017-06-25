@@ -10,13 +10,15 @@ export default (filterState = defaultFilterState, action) => {
     const {type, payload} = action
 
     switch (type) {
-        case SET_DATE_FILTER: return Object.assign({}, filterState, {
+        case SET_DATE_FILTER: return {
+            ...filterState,
             from: payload.from,
             to: payload.to
-        })
-        case SET_ID_FILTER: return Object.assign({}, filterState, {
+        }
+        case SET_ID_FILTER: return {
+            ...filterState,
             ids: payload.ids
-        })
+        }
     }
 
     return filterState
