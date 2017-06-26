@@ -5,20 +5,15 @@ import SelectFilter from './Select'
 import {connect} from 'react-redux'
 
 class Filters extends Component {
-    static propTypes = {
-        articles: PropTypes.array
-    };
 
     render() {
         return (
             <div>
-                <SelectFilter articles = {this.props.articles} />
+                <SelectFilter />
                 <DateRange />
             </div>
         )
     }
 }
 
-export default connect(state => ({
-    articles: state.articles
-}))(Filters)
+export default Filters
