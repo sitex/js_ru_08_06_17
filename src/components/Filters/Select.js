@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import 'react-select/dist/react-select.css'
 
 class SelectFilter extends Component {
+    //аналогично, храни значения в одном месте
     state = {
         selected: []
     }
