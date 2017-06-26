@@ -7,22 +7,19 @@ import {connect} from 'react-redux'
 import 'react-select/dist/react-select.css'
 
 class SelectFilter extends Component {
-    state = {
-        selected: []
-    }
 
     static propTypes = {
-        articles: PropTypes.array.isRequired
+        // from connect
+        articles: PropTypes.array.isRequired,
+        selected: PropTypes.array.isRequired
     };
 
     handleChange = selected => {
-        this.setState({selected})
         this.props.setIdFilter(selected.map(select => select.value))
     }
 
     render() {
-        const { selected } = this.state
-        const { articles } = this.props
+        const { selected, articles } = this.props
 
         const options = articles.map(article => ({
             label: article.title,
@@ -38,4 +35,7 @@ class SelectFilter extends Component {
     }
 }
 
-export default connect(null, { setIdFilter })(SelectFilter)
+export default connect((state) => ({
+    articles: state.articles,
+    selected: state.filter.ids
+}), { setIdFilter })(SelectFilter)
