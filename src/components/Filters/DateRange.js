@@ -7,6 +7,7 @@ import moment from 'moment'
 import 'react-day-picker/lib/style.css';
 
 class DateRange extends Component {
+    //Стейт уже не нужен, бери значения из стора
     state = {
         from: null,
         to: null
