@@ -35,7 +35,10 @@ const getVisibleArticles = (articles, filter) => {
     const isActiveIdFilter = (filter.ids.length > 0)
     const isActiveDateFilter = (!!filter.from && !!filter.to)
     const checkId = (id) => filter.ids.includes(id)
-    const checkDate = (date) => moment(date).isBetween(filter.from, filter.to)
+    const checkDate = (date) => moment(date).isBetween(
+        moment(filter.from).clone().hour(0).minute(0),
+        moment(filter.to).clone().hours(23).minute(59)
+    )
 
     if (isActiveIdFilter && isActiveDateFilter) {
         return articles.filter(article => checkId(article.id) && checkDate(article.date))
