@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import DayPicker, { DateUtils } from 'react-day-picker'
 import {setDateFilter} from '../../AC'
 import {connect} from 'react-redux'
@@ -6,6 +7,11 @@ import {connect} from 'react-redux'
 import 'react-day-picker/lib/style.css';
 
 class DateRange extends Component {
+
+    static propTypes = {
+        // from connect
+        from: PropTypes.objectOf(Date),
+        to: PropTypes.objectOf(Date)
     }
 
     handleDayClick = (day) => {
