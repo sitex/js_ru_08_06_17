@@ -1,5 +1,5 @@
-import {DELETE_ARTICLE} from '../constants'
 import {normalizedArticles} from '../fixtures'
+import {DELETE_ARTICLE, CREATE_COMMENT} from '../constants'
 
 const articlesMap = normalizedArticles.reduce((acc, article) => {
     if (!article.comments) article.comments = []
@@ -17,6 +17,17 @@ export default (articleState = articlesMap, action) => {
             }
             delete newState[payload.id]
             return newState
+        }
+
+        case CREATE_COMMENT: {
+            const article = articleState[payload.articleId]
+            return {
+                ...articleState,
+                [payload.articleId]: {
+                    ...article,
+                    comments: article.comments.concat(payload.comment.id)
+                }
+            }
         }
     }
 
