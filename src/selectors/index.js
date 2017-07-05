@@ -17,5 +17,5 @@ export const filtratedArticlesSelector = createSelector(articlesGetter, filtersG
 })
 
 export const commentSelectorFactory = () => createSelector(commentsGetter, idGetter, (comments, id) => {
-    return comments[id]
+    return comments.getIn(['entities', id])
 })
