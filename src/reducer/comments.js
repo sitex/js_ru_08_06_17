@@ -18,6 +18,7 @@ const CommentRecord = Record({
 const ReducerState = Record({
     entities: new OrderedMap({}),
     commentIdsByPage: new OrderedMap({}),
+    //ок, но я бы просто total хранил, а количество страниц никогда не поздно посчитать
     pagesCount: 0
 })
 
